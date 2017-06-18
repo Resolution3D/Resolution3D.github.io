@@ -123,7 +123,7 @@ for (var i = 0; i < layer_names.length; i++) {
 		// add an image to the modal
 		var modal_image = document.createElement("img");
 		modal_image.setAttribute("id", "modal_image");
-		modal.style.overflow = 'visible';
+		modal.style.overflow = 'scroll';
 		if (isMobile === false) {
 			modal_description.style.maxWidth = '55%';
 			modal_description.style.maxHeight = '95%';
