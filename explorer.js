@@ -49,7 +49,13 @@ html.remodal-is-locked{overflow:hidden;touch-action:none}
 @keyframes remodal-overlay-opening-keyframes{from,to{opacity:0}}
 @-webkit-keyframes remodal-overlay-closing-keyframes{from,to{opacity:0}}
 @keyframes remodal-overlay-closing-keyframes{from,to{opacity:0}}
-.remodal-overlay{opacity:0}`;
+.remodal-overlay{opacity:0}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    display: none;
+}
+-ms-overflow-style: none;`;
 // find the container for the interactive
 var container = document.getElementById("container");
 // append all of the above to the container
@@ -133,7 +139,7 @@ for (var i = 0; i < layer_names.length; i++) {
 			modal_description.style.float = 'left';
 			modal_description.style.textAlign = 'left';
 			modal_image.style.position = 'relative';
-			modal.style.maxWidth = '80%';
+			modal.style.maxWidth = '95%';
 			modal.style.maxHeight = '95%';
 			modal_description.style.fontSize = '100%';
 			// add the modal to the container
