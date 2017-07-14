@@ -140,7 +140,9 @@ for (var i = 0; i < layer_names.length; i++) {
 			modal_description.style.textAlign = 'left';
 			modal_image.style.position = 'relative';
 			modal.style.maxWidth = '95%';
+			modal.style.minWidth = '80%';
 			modal.style.maxHeight = '95%';
+			modal.style.minHeight = '80%';
 			modal_description.style.fontSize = '100%';
 			// add the modal to the container
 			modal.appendChild(modal_title);
