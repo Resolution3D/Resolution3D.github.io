@@ -42,7 +42,15 @@ html.remodal-is-locked{overflow:hidden;touch-action:none}
 @media only screen and (min-width:60%){.remodal{max-width:85%;}}
 .lt-ie9 .remodal-overlay{background:#2b2e38}
 .lt-ie9 .remodal{width:auto}
-.remodal{color:#2b2e38;background:rgba(255,255,255,.85);max-width:95%;max-height:95%;overflow:scroll}
+.remodal{
+	color:#2b2e38;
+	background:rgba(255,255,255,.85);
+	max-width:95%;
+	max-height:95%;
+	overflow:scroll;
+	-ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
 .remodal-bg.remodal-is-opened,.remodal-bg.remodal-is-opening{-webkit-filter:blur(5px);filter:blur(5px)}
 .remodal-overlay.remodal-is-opening{-webkit-animation-name:remodal-overlay-opening-keyframes;animation-name:remodal-overlay-opening-keyframes}
 .remodal-overlay.remodal-is-closing{-webkit-animation-name:remodal-overlay-closing-keyframes;animation-name:remodal-overlay-closing-keyframes}
@@ -56,7 +64,8 @@ html.remodal-is-locked{overflow:hidden;touch-action:none}
     background: transparent;
     display: none;
 }
--ms-overflow-style: none;`;
+-ms-overflow-style: none;
+-ms-overflow-style: -ms-autohiding-scrollbar;`;
 // find the container for the interactive
 var container = document.getElementById("container");
 // append all of the above to the container
