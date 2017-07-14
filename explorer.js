@@ -56,7 +56,6 @@ html.remodal-is-locked{overflow:hidden;touch-action:none}
 }
 html *{
 	-ms-overflow-style: none !important;
-	overflow: -moz-scrollbars-none !important;
 }`;
 // find the container for the interactive
 var container = document.getElementById("container");
@@ -303,5 +302,4 @@ function which_image(element, event) {
 	if (index > 0)
 		return which_image(images[index - 1], event);
 	return null;
-
 }
