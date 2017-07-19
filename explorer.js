@@ -22,7 +22,7 @@ html.remodal-is-locked{overflow:hidden;touch-action:none}
 .remodal-confirm{overflow:visible;margin:0;cursor:pointer;text-decoration:none;outline:0;border:0}.remodal-is-initialized{display:inline-block}
 .remodal-close,.remodal-close:before{position:absolute;top:0;right:0;display:block;width:35px}
 .remodal-overlay{background:rgba(43,46,56,.9)}
-.remodal.remodal-is-closing,.remodal.remodal-is-opening{animation-duration:0s;animation-fill-mode:forwards}
+.remodal.remodal-is-closing,.remodal.remodal-is-opening{animation-duration:0.2s;animation-fill-mode:forwards}
 .remodal.remodal-is-opening{animation-name:remodal-opening-keyframes}
 .remodal.remodal-is-closing{animation-name:remodal-closing-keyframes}
 .remodal,.remodal-wrapper:after{vertical-align:middle}
@@ -44,11 +44,10 @@ html.remodal-is-locked{overflow:hidden;touch-action:none}
 .remodal-bg.remodal-is-opened,.remodal-bg.remodal-is-opening{-webkit-filter:blur(5px);filter:blur(5px)}
 .remodal-overlay.remodal-is-opening{-webkit-animation-name:remodal-overlay-opening-keyframes;animation-name:remodal-overlay-opening-keyframes}
 .remodal-overlay.remodal-is-closing{-webkit-animation-name:remodal-overlay-closing-keyframes;animation-name:remodal-overlay-closing-keyframes}
-@-webkit-keyframes remodal-overlay-opening-keyframes{from,to{opacity:0}}
-@keyframes remodal-overlay-opening-keyframes{from,to{opacity:0}}
-@-webkit-keyframes remodal-overlay-closing-keyframes{from,to{opacity:0}}
-@keyframes remodal-overlay-closing-keyframes{from,to{opacity:0}}
-.remodal-overlay{opacity:0}
+@-webkit-keyframes remodal-overlay-opening-keyframes{from{opacity:0}to{opacity:1}}
+@keyframes remodal-overlay-opening-keyframes{from{opacity:0}to{opacity:1}}
+@-webkit-keyframes remodal-overlay-closing-keyframes{from{opacity:1}to{opacity:0}}
+@keyframes remodal-overlay-closing-keyframes{from{opacity:1}to{opacity:0}}
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
@@ -56,7 +55,35 @@ html.remodal-is-locked{overflow:hidden;touch-action:none}
 }
 html *{
 	-ms-overflow-style: none !important;
-}`;
+}
+.remodal-overlay {
+  background: rgba(43, 46, 56, 0.9);
+}
+
+.remodal-overlay.remodal-is-opening,
+.remodal-overlay.remodal-is-closing {
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.remodal-overlay.remodal-is-opening {
+  animation-name: remodal-overlay-opening-keyframes;
+}
+
+.remodal-overlay.remodal-is-closing {
+  animation-name: remodal-overlay-closing-keyframes;
+}
+.remodal-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: -5000px;
+  right: -5000px;
+  bottom: -5000px;
+  left: -5000px;
+
+  display: none;
+}
+`;
 // find the container for the interactive
 var container = document.getElementById("container");
 // append all of the above to the container
