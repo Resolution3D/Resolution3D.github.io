@@ -80,8 +80,12 @@ html *{
   right: -5000px;
   bottom: -5000px;
   left: -5000px;
-
   display: none;
+}
+.remodal {
+	border-radius: 25px;
+	border: 2px solid black;
+	-webkit-text-size-adjust: 100%;
 }
 `;
 // find the container for the interactive
@@ -97,21 +101,21 @@ var unallowed = new Set(['Cabinet']);
 // names of the image assets
 var layer_names = ["Cabinet","LV Drive","Soft Starter","Relays","Contactors","Manual Motor Starter","Overload Relay","MCB","MCCB","Pilot Devices","Small CPT","Terminal Blocks","Plug-in Relay"];
 // what to put for title of respective modal
-var modal_names = ["Cabinet","AF-6 Series LV Drives","ASTAT XL Soft Starter","C-2000 Relays","Efficor Contactors","Surion Manual Motor Starter","RE Series EOL Relay","ElfaPlus MCB","GuardEon MCCB","Pilot Devices","Small Control Power Transformer","451 Series Terminal Blocks","Series PRC Plug-in Relay"];
+var modal_names = ["Cabinet","AF-6 Series LV Drive","ASTAT XL Soft Starter","C-2000 Relays","Efficor Contactors","Surion Manual Motor Starter","RE Series EOL Relay","ElfaPlus MCB","GuardEon MCCB","Pilot Devices","Core & Coil CPT","451 Series Terminal Blocks","Series PRC Plug-in Relay"];
 // descriptions to show in the modals
 var descriptions = ["",
-"<b>Built-in features. Built-in simplicity.</b><br>AF-6 Series drives come in a compact package with a host of built-in features that heighten performance, reduce energy consumption, simplify installation and eliminate the need for many costly add-ons.<ul><li>Available in constant or variable torque configurations</li><li>1/3 - 1350 HP</li><li>Energy savings up to 40%</li><li>110%-150% current overload up to 1 minute</li></ul><br><a href=\"http://www.geindustrial.com/products/drives/af-650-gp-general-purpose-drives\">Learn More: Constant Torque</a><br><a href=\"http://www.geindustrial.com/products/drives/af-600-fp-fan-pump-drives\">Learn More: Variable Torque</a><br><a href=\"http://www.geindustrial.com/products/drives/low-voltage-ac\">Related Products</a>",
-"<b>Powerful features, easy application</b><br>This digital soft starter has an intuitive user-friendly keypad, real-time graphing of motor performance, and can record its last 8 trip events.<ul><li>Rated up to 1600A and 690Vac</li><li>Reduce panel size up to 20% with integrated by-pass</li><li>Easy integration: Adjustable busbars allow for top or bottom power entry</li><li>Smart: Unique adaptive control for better start/stop conditions</li></ul><br><a href=\"http://www.geindustrial.com/products/starters/astat-xl-low-voltage-soft-starters\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/starters/solid-state-reduced-voltage\">Related Products</a>",
-"<b>Greater design versatility</b><br>The C-2000 line of relays, contactors and starters offers a wide array of contact arrangements, coil voltages, and accessories. C-2000 components contain features that make them easier to install, allow for more flexible configurations and make better use of panel space.<ul><li>Compliant with UL508 and NEMA standards</li><li>PLC compatible mini relays available</li><li>Screw Type, Quic Connect or PCB terminals</li><li>Available in standard and miniature housing</li></ul><br><a href=\"http://www.geindustrial.com/products/relays-timers-control/c-2000-relay\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/relays-timers-control\">Related Products</a>",
-"<b>Contactor and starter combinations for demanding applications</b><br>Efficor provides starter and power switching solutions for OEMs and Panel Builders working in demanding markets.<ul><li>Up to 50% inventory reduction due to integrated auxiliary contacts and universal service coil</li><li>Rated up to 105A</li><li>Compact starters reduce panel dimension requirements</li><li>Easy integration: Tool-free assembly, top and bottom coil entry, and side-by-side mounting</li></ul><br><a href=\"http://www.geindustrial.com/products/contactors/efficor-reliable-starter-solutions-105a\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/contactors\">Related Products</a>",
-"<b>Global manual motor starter solution</b><br>Surion IEC motor starters are compact, reliable, and quick to install. Available in 45mm or 55mm widths, Surion has a complete range of accessories that enhance the application flexibility of the line.<ul><li>2 frames up to 32A and 63A</li><li>Three position operator: OFF - Trip - ON</li><li>Thermal-magnetic or magnetic-only protection</li><li>Common to Efficor, M and CL series contactors</li></ul><br><a href=\"http://www.geindustrial.com/products/starters/surion-manual-motor-starter\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/starters/iec-starters\">Related Products</a>",
-"<b>Reliable motor protection with electronic overload relays</b><br>RE Series overload relays offer multiple trip class protection settings within the same device. Their wide range of current ratings help reduce inventory and allow for flexibility when commissioning.<ul><li>Range from 0.1-150A in 3 frame sizes</li><li>Multiple trip class selections: 5-10-20-30</li><li>Low power consumption; Phase unbalance protection</li><li>To use in conjunction with C2000 and Efficor contactors</li></ul><br><a href=\"http://www.geindustrial.com/products/overload-relays/electronic-overload-relay\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/contactors\">Related Products</a>",
-"<b>Addressing the needs of OEMs across the globe</b><br>ElfaPlus 35mm DIN-rail mounted MCBs have an a lifespan of 10,000 operation cycles, ensuring your system is up-and-running and protected at all times.<ul><li>High performance arc management system yields more efficient short circuit failure clearing</li><li>Quick and easy installation/removal with Bi-Stable DIN Rail Extraction System</li><li>Complete range of Ground Fault Protection Devices, Shunt Trips, UL Busbars and Auxiliary Contacts</li></ul><br><a href=\"http://www.geindustrial.com/products/circuit-breakers/elfaplus-global-din-rail-devices-ul-approval\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/circuit-breakers/mini-circuit-breakers-supplementary-protectors\">Related Products</a>",
-"<b>Smart. Reliable. Secure.</b><br>GuardEon is a low-voltage molded case circuit breaker platform designed by users for global industry applications and built for the age of the industrial internet.<ul><li>Excellent uptime with onboard diagnostics and predictive maintenance capabilities</li><li>ArcWatch enabled to provide arc flash protection and selective coordination</li><li>Save up to 30% on labor costs with the PremEon-G Trip Unit</li><li>Rotating faceplates enable label readability in both vertical and horizontal orientations</li></ul><br><a href=\"http://www.geindustrial.com/products/circuit-breakers/guardeon\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/circuit-breakers/molded-case-circuit-breakers\">Related Products</a>",
-"<b>Fast assembly, ergonomic design</b><br>With C-2000 push buttons and pilot lights, you gain speed and simplicity across the line. Seemingly small details add up to big differences - in assembly, mounting and operation.<ul><li>Tool-free, snap together design simplifies assembly</li><li>Double bridge contacts provide excellent performance, even in low-voltage applications</li><li>Ultrasonic welding minimizes contact contamination</li><li>Permanent, laser etched markings</li></ul><br><a href=\"http://www.geindustrial.com/products/push-buttons-pilot-devices/c-2000-iec-pilot-devices\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/push-buttons-pilot-devices\">Related Products</a>",
-"<b>Transformers for performance, reliability and service life</b><br>Provide voltage to control devices in applications where regulation compliance and minimal space usage are a must.<ul><li>Rated 0.05-3.0 kVA</li><li>Flexible design allows input or output voltage to match any application</li><li>Pressure plate terminals ensure secure connections</li><li>Rugged, high-impact plastic terminal board</li></ul><br><a href=\"http://www.geindustrial.com/products/transformers/terminal-board-connection\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/transformers/control-power-core-coil\">Related Products</a>",
-"<b>A full line of DIN-rail mounted terminal blocks</b><br>Terminal blocks that include screw, spring and insulation displacement contact types, as well as a full range of accessories such as end stops, jumpers, and marking tags.<ul><li>Fast and safe installation with captive, touch-safe hardware</li><li>Error-free mounting with visual indicators located on the feet</li><li>Longevity and reliability ensured by 40-year thermal aging and seismic tests</li></ul><br><a href=\"http://www.geindustrial.com/products/terminal-blocks/451-series-terminal-blocks\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/terminal-blocks\">Related Products</a>",
-"<b>Plug-in relays that meet your needs</b><br>Series PRC plug-in relays offer a cost-effective switching solution for industrial control circuits.<ul><li>Control circuit voltages (AC or DC) from 6V to 240V</li><li>Lockable test button with mechanical flag indicator</li><li>LED indicator incorporated in relay design</li><li>Three basic mounting configurations: Plug-in, fast-on, or solder</li></ul><br><a href=\"http://uk.geindustrial.com/products/auxiliary-devices/series-prc-plug-relays\">Learn More</a><br><a href=\"http://www.geindustrial.com/products/relays-timers-control\">Related Products</a>"];
+"Drives with built-in features that heighten performance, reduce energy consumption, and simplify installation.<br><a href=\"http://www.geindustrial.com/products/drives/af-650-gp-general-purpose-drives\">Learn more about the AF-6</a><br><a href=\"http://www.geindustrial.com/products/drives/low-voltage-ac\">View our entire line of drives</a>",
+"Digital soft starters with real-time motor performance graphing and records of previous trip events.<br><a href=\"http://www.geindustrial.com/products/starters/astat-xl-low-voltage-soft-starters\">Learn more about ASTAT</a><br><a href=\"http://www.geindustrial.com/products/starters/solid-state-reduced-voltage\">View our entire line of starters</a>",
+"Relays with features that make them easier to install, allow for more flexible configurations, and make better use of panel space.<br><a href=\"http://www.geindustrial.com/products/relays-timers-control/c-2000-relay\">Learn more about C-2000</a><br><a href=\"http://www.geindustrial.com/products/relays-timers-control\">View our entire line of relays</a>",
+"Global contactors that provide starting and power switching solutions for OEMs and Panel Builders working in demanding markets.<br><a href=\"http://www.geindustrial.com/products/contactors/efficor-reliable-starter-solutions-105a\">Learn more about Efficor</a><br><a href=\"http://www.geindustrial.com/products/contactors\">View our entire line of contactors</a>",
+"Global manual motor starters that are compact, reliable, easy to install, and offered with a complete range of accessories.<br><a href=\"http://www.geindustrial.com/products/starters/surion-manual-motor-starter\">Learn more about Surion</a><br><a href=\"http://www.geindustrial.com/products/starters/iec-starters\">View our entire line of starters</a>",
+"Overload relays with multiple trip class protection settings and a wide range of current ratings.<br><a href=\"http://www.geindustrial.com/products/overload-relays/electronic-overload-relay\">Learn more about RE Series</a>",
+"DIN-rail mounted MCBs that ensure your system is up-and-running and protected at all times.<br><a href=\"http://www.geindustrial.com/products/circuit-breakers/elfaplus-global-din-rail-devices-ul-approval\">Learn more about ElfaPlus</a><br><a href=\"http://www.geindustrial.com/products/circuit-breakers/mini-circuit-breakers-supplementary-protectors\">View our entire line of MCBs</a>",
+"Low-Voltage MCCBs that were designed by users for global industry applications and built for the age of the industrial internet.<br><a href=\"http://www.geindustrial.com/products/circuit-breakers/guardeon\">Learn more about GuardEon</a><br><a href=\"http://www.geindustrial.com/products/circuit-breakers/molded-case-circuit-breakers\">View our entire line of MCCBs</a>",
+"Push buttons and pilot lights that give you simplicity across the line with easy assembly, mounting and operation.<br><a href=\"http://www.geindustrial.com/products/push-buttons-pilot-devices/c-2000-iec-pilot-devices\">Learn more about our pilot devices</a><br><a href=\"http://www.geindustrial.com/products/push-buttons-pilot-devices\">View our entire line of pilot devices</a>",
+"Control Power Transformers that provide voltage in applications where regulation compliance and minimal space usage are a must.<br><a href=\"http://www.geindustrial.com/products/transformers/terminal-board-connection\">Learn more about our CPTs</a><br><a href=\"http://www.geindustrial.com/products/transformers/control-power-core-coil\">View our entire line of transformers</a>",
+"Terminal blocks that include a full range of accessories such as end stops, jumpers, and marking tags.<br><a href=\"http://www.geindustrial.com/products/terminal-blocks/451-series-terminal-blocks\">Learn more about 451 Series Terminal Blocks</a><br><a href=\"http://www.geindustrial.com/products/terminal-blocks\">View our entire line of terminal blocks<\a>",
+"Plug-in relays that meet your needs as a cost-effective switching solution for industrial control circuits.<br><a href=\"http://uk.geindustrial.com/products/auxiliary-devices/series-prc-plug-relays\">Learn more about PRC Plugin-in Relays</a><br><a href=\"http://www.geindustrial.com/products/relays-timers-control\">View our entire line of plugin-in relays</a>"];
 var zoomed_images = [];
 var layers = [];
 // populate the layers array & create the graphic
@@ -127,6 +131,16 @@ function add_image_to_layers(name, path) {
 	container.appendChild(new_layer);
 	layers.push(new_layer);
 }
+var addEvent = function(object, type, callback) {
+    if (object == null || typeof(object) == 'undefined') return;
+    if (object.addEventListener) {
+        object.addEventListener(type, callback, false);
+    } else if (object.attachEvent) {
+        object.attachEvent("on" + type, callback);
+    } else {
+        object["on"+type] = callback;
+    }
+};
 for (var i = 0; i < layer_names.length; i++) {
 	// populate full images array
 	add_image_to_layers(layer_names[i], 'photos/Full/');
@@ -140,58 +154,54 @@ for (var i = 0; i < layer_names.length; i++) {
 		modal.setAttribute("data-remodal-id", "modal" + layer_names[i].replace(/ /g, "_"));
 		modal.setAttribute("class", "modal");
 		// create the x close button
+/*
 		var close_button = document.createElement("button");
 		close_button.id = "remodal_close_button";
 		close_button.setAttribute("data-remodal-action", "close");
 		close_button.setAttribute("class", "remodal-close");
 		// add the x close button to the modal
 		modal.appendChild(close_button);
+*/
 		// set the title of the modal
 		var modal_title = document.createElement("h1");
 		// set the description of the modal]
 		var modal_description = document.createElement("p");
 		modal_description.setAttribute("id", "modal_description");
 		modal_title.style.fontFamily = 'GEInspira';
-		modal_title.style.textAlign = 'left';
+		modal_title.style.textAlign = 'center';
 		modal_description.style.fontFamily = 'GEInspira';
 		// add an image to the modal
 		var modal_image = document.createElement("img");
 		modal_image.setAttribute("id", "modal_image");
 		modal.style.overflow = 'scroll';
+		modal_description.style.textAlign = 'left';
+		modal_description.style.maxHeight = '95%';
 		if (isMobile === false) {
 			modal_description.style.maxWidth = '55%';
-			modal_description.style.maxHeight = '95%';
-			modal_image.style.float = 'right';
-			modal_image.style.maxWidth = '35%'
+			modal_image.style.float = 'right' ;
+			modal_image.style.maxWidth = '35%';
 			modal_description.style.position = 'absolute';
 			modal_description.style.float = 'left';
-			modal_description.style.textAlign = 'left';
 			modal_image.style.position = 'relative';
-			modal.style.maxWidth = '95%';
-			modal.style.minWidth = '80%';
-			modal.style.maxHeight = '95%';
-			modal.style.minHeight = '80%';
-			modal_description.style.fontSize = '100%';
-			// add the modal to the container
+			modal.style.maxWidth = '55%';
+			modal.style.minWidth = '20%';
+			modal.style.maxHeight = '55%';
+			modal.style.minHeight = '20%';
+			modal_description.style.fontSize = '90%';
 			modal.appendChild(modal_title);
 			modal.appendChild(modal_description);
 			modal.appendChild(modal_image);
 		} else {
 			modal_description.style.maxWidth = '95%';
-			modal_description.style.maxHeight = '95%';
 			modal_image.style.maxHeight = '25%'
 			modal_description.style.position = 'relative';
-			modal_description.style.textAlign = 'left';
 			modal_description.style.float = 'bottom';
 			modal_image.style.margin = 'auto';
 			modal_image.style.position = 'center';
-			modal.style.maxWidth = '100%';
-			modal.style.maxHeight = '100%';
-			if (isiPad === false) {
-				modal_title.style.fontSize = '60%';
-				modal_description.style.fontSize = '40%';
-			}
-			// add the modal to the container
+			modal.style.maxWidth = '90%';
+			modal.style.maxHeight = '80%';
+			modal_description.style.fontSize = 'calc(21px + 2vw)';
+			modal_title.style.fontSize = 'calc(30px + 2vw)';
 			modal.appendChild(modal_title);
 			modal.appendChild(modal_image);
 			modal.appendChild(document.createElement("br"));
