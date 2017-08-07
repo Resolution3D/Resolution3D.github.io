@@ -154,14 +154,12 @@ for (var i = 0; i < layer_names.length; i++) {
 		modal.setAttribute("data-remodal-id", "modal" + layer_names[i].replace(/ /g, "_"));
 		modal.setAttribute("class", "modal");
 		// create the x close button
-/*
 		var close_button = document.createElement("button");
 		close_button.id = "remodal_close_button";
 		close_button.setAttribute("data-remodal-action", "close");
 		close_button.setAttribute("class", "remodal-close");
 		// add the x close button to the modal
 		modal.appendChild(close_button);
-*/
 		// set the title of the modal
 		var modal_title = document.createElement("h1");
 		// set the description of the modal]
